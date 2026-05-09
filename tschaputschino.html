@@ -1305,7 +1305,7 @@ footer{
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
-  .hero-grid,.roasters-intro,.abo-grid,.news-inner{grid-template-columns:1fr;gap:50px}
+  .roasters-intro,.abo-grid,.news-inner{grid-template-columns:1fr;gap:50px}
   .roasters-grid{grid-template-columns:1fr 1fr}
   .roaster-card:nth-child(odd){border-right:1px solid var(--line)}
   .roaster-card:nth-child(3n){border-right:0}
@@ -1388,6 +1388,84 @@ footer{
   .section-title{font-size:clamp(28px,8vw,40px)}
   .roaster-card{padding:24px 20px}
   .hero-meta{justify-content:flex-start}
+}
+
+/* === LARGE SCREEN SCALING === */
+
+/* 960px — hero collapses to single column (keeps 2-col on half-screen 2560px monitors) */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+}
+
+/* 1400px — large desktop / half of 2.8K */
+@media (min-width:1400px){
+  :root{--maxw:1500px;--pad:clamp(36px,3.6vw,72px)}
+  .hero{padding:80px 0 120px}
+  section{padding:100px 0}
+  .roasters,.abo{padding:130px 0}
+  .coffee-grid{gap:36px}
+  .gear-grid{height:740px}
+}
+
+/* 1920px — Full HD / half of 4K */
+@media (min-width:1920px){
+  :root{--maxw:1720px}
+  .hero-title{font-size:clamp(72px,5.8vw,140px)}
+  .section-title{font-size:clamp(48px,4.2vw,90px)}
+  .abo-headline{font-size:clamp(60px,5vw,110px)}
+  .hero-sub{font-size:20px}
+  .brand{font-size:36px}
+  .nav-inner{padding:22px var(--pad)}
+  section{padding:120px 0}
+  .roasters,.abo{padding:160px 0}
+  .coffee-grid{gap:40px}
+  .gear-grid{height:860px}
+}
+
+/* 2560px — QHD/2K / half of 5K */
+@media (min-width:2560px){
+  :root{--maxw:2280px;--pad:clamp(48px,3vw,88px)}
+  .hero-title{font-size:clamp(90px,5.2vw,170px)}
+  .section-title{font-size:clamp(60px,3.8vw,110px)}
+  .abo-headline{font-size:clamp(72px,4.2vw,130px)}
+  .hero-sub{font-size:22px;max-width:580px}
+  .hero-grid{gap:80px}
+  .brand{font-size:42px}
+  .nav-inner{padding:26px var(--pad)}
+  .nav-links{font-size:14px;gap:40px}
+  .nav-utility{font-size:14px}
+  section{padding:150px 0}
+  .roasters,.abo{padding:200px 0}
+  .coffee-grid{grid-template-columns:repeat(4,1fr);gap:44px}
+  .roasters-grid{grid-template-columns:repeat(4,1fr)}
+  .roaster-card:nth-child(3n){border-right:1px solid var(--line)}
+  .roaster-card:nth-child(4n){border-right:none}
+  .roaster-card:nth-last-child(-n+3){border-bottom:1px solid var(--line)}
+  .roaster-card:nth-last-child(-n+4){border-bottom:none}
+  .brew-track{grid-template-columns:repeat(4,1fr)}
+  .brew-step:nth-child(2){border-right:1px solid var(--line)}
+  .brew-step:nth-child(1),.brew-step:nth-child(2){border-bottom:none}
+  .gear-grid{height:1100px}
+}
+
+/* 3840px — 4K / half of 8K */
+@media (min-width:3840px){
+  :root{--maxw:3400px;--pad:clamp(64px,2.5vw,110px)}
+  .hero-title{font-size:clamp(110px,4.2vw,220px)}
+  .section-title{font-size:clamp(72px,3.2vw,140px)}
+  .abo-headline{font-size:clamp(84px,3.6vw,160px)}
+  .hero-sub{font-size:26px;max-width:720px}
+  .brand{font-size:52px}
+  .brand-mark{width:56px;height:56px}
+  .nav-inner{padding:32px var(--pad)}
+  .nav-links{font-size:16px;gap:52px}
+  .nav-utility{font-size:16px}
+  section{padding:200px 0}
+  .roasters,.abo{padding:260px 0}
+  .coffee-grid{gap:52px}
+  .gear-grid{height:1500px}
+  .brew-step{padding:52px 40px}
+  .roaster-card{padding:48px 44px;min-height:360px}
 }
 
 /* === roaster attribution & specs === */
