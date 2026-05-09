@@ -1246,6 +1246,63 @@ footer{
 }
 .footer-bottom a:hover{color:var(--tangelo)}
 
+/* ============ HAMBURGER / MOBILE NAV ============ */
+.nav-burger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  width:40px;height:40px;
+  align-items:center;justify-content:center;
+  padding:8px;
+  border-radius:var(--r-sm);
+  background:none;
+  transition:background .2s;
+  flex-shrink:0;
+}
+.nav-burger:hover{background:var(--linen-deep)}
+.nav-burger span{
+  display:block;
+  width:22px;height:2px;
+  background:var(--bean);
+  border-radius:2px;
+  transition:transform .3s, opacity .3s;
+}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.nav-mobile{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:rgba(250,248,244,.97);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  z-index:99;
+  padding:80px 24px 36px;
+  transform:translateY(-110%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  border-bottom:1px solid var(--line);
+  display:none;
+}
+.nav-mobile.open{transform:translateY(0)}
+.nav-mobile-links{display:flex;flex-direction:column}
+.nav-mobile-links a{
+  font-family:var(--f-mono);
+  font-size:14px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:color .2s;
+}
+.nav-mobile-links a:first-child{border-top:1px solid var(--line)}
+.nav-mobile-links a:hover{color:var(--tangelo)}
+.nav-mobile-links a::after{content:"→";opacity:.4}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
   .hero-grid,.roasters-intro,.abo-grid,.news-inner{grid-template-columns:1fr;gap:50px}
@@ -1262,19 +1319,75 @@ footer{
   .quotes-grid{grid-template-columns:1fr;gap:30px}
 }
 @media (max-width:680px){
+  /* Nav */
   .nav-links{display:none}
-  .nav-inner{grid-template-columns:1fr auto}
+  .nav-burger{display:flex}
+  .nav-mobile{display:block}
+  .nav-inner{grid-template-columns:auto 1fr auto;gap:12px}
+  .lang-pill{display:none}
+  .cart-btn span:first-child{display:none} /* hide "Warenkorb" label, keep count */
+  .cart-btn{padding:9px 12px;gap:6px}
+
+  /* Hero */
+  .hero{padding:28px 0 52px}
+  .hero-title{font-size:clamp(40px,11vw,64px)}
+  .hero-sub{font-size:16px;margin-bottom:32px}
+  .hero-cta{flex-direction:column;gap:10px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .hero-meta{gap:16px;flex-wrap:wrap}
+  .hero-meta-item strong{font-size:20px}
+  .hero-visual{display:none} /* removes large visual block; saves critical space on mobile */
+  .hero-rule{display:none}
+
+  /* Sections */
+  section{padding:52px 0}
+  .roasters,.abo{padding:64px 0}
+  .section-head{grid-template-columns:1fr;gap:12px}
+  .section-link{align-self:flex-start}
+
+  /* Coffee */
   .coffee-grid{grid-template-columns:1fr}
-  .gear-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr}
+
+  /* Roasters */
+  .roasters-grid{grid-template-columns:1fr}
+  .roaster-card{border-right:none !important;min-height:auto}
+  .roaster-card:nth-last-child(-n+3){border-bottom:1px solid var(--line)}
+  .roaster-card:last-child{border-bottom:none}
+  .roasters-intro{grid-template-columns:1fr;gap:16px}
+
+  /* Brew */
   .brew-track{grid-template-columns:1fr}
-  .brew-step{border-right:none;border-bottom:1px solid rgba(66,22,4,.2)}
+  .brew-step{border-right:none;border-bottom:1px solid rgba(66,22,4,.2);padding:28px 20px}
   .brew-step:last-child{border-bottom:none}
+
+  /* Gear */
+  .gear-grid{grid-template-columns:1fr;height:auto;grid-auto-rows:220px}
+  .gear-tile.feat{grid-row:auto;grid-column:auto;grid-auto-rows:280px}
+
+  /* Abo */
+  .abo-card{padding:36px 22px}
+  .abo-headline{font-size:clamp(38px,9vw,60px)}
+  .option-pills{gap:6px}
+  .opt-pill{padding:9px 14px;font-size:11px}
+
+  /* Newsletter */
   .news-form{flex-direction:column;border-radius:18px;padding:14px}
   .news-form button{width:100%;justify-content:center;border-radius:99px}
-  .section-head{grid-template-columns:1fr}
-  .hero{padding:30px 0 60px}
-  section{padding:60px 0}
+
+  /* Footer */
+  .footer-top{grid-template-columns:1fr}
+  .footer-mega{font-size:clamp(56px,16vw,120px);margin:36px 0 20px}
+  .footer-bottom{flex-direction:column;gap:12px}
+}
+
+@media (max-width:420px){
+  .hero-title{font-size:clamp(34px,10vw,48px)}
+  .btn{padding:14px 20px;font-size:11.5px}
+  .abo-card{padding:28px 16px}
+  .brew-step{padding:22px 16px}
+  .section-title{font-size:clamp(28px,8vw,40px)}
+  .roaster-card{padding:24px 20px}
+  .hero-meta{justify-content:flex-start}
 }
 
 /* === roaster attribution & specs === */
@@ -1326,6 +1439,9 @@ footer{
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
+    <button class="nav-burger" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
       <a href="#kaffee">Kaffee</a>
       <a href="#zubehoer">Zubehör</a>
@@ -1347,6 +1463,17 @@ footer{
   </div>
 </nav>
 
+<!-- Mobile nav overlay -->
+<div class="nav-mobile" id="navMobile">
+  <nav class="nav-mobile-links">
+    <a href="#kaffee">Kaffee</a>
+    <a href="#zubehoer">Zubehör</a>
+    <a href="#abo">Abo</a>
+    <a href="#story">Röstereien</a>
+    <a href="#brew">Brüh-Guide</a>
+  </nav>
+</div>
+
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="container">
@@ -1355,7 +1482,7 @@ footer{
         <div class="hero-eyebrow">Kuratiert · 16 Röstereien aus Österreich · Saison 2026</div>
         <h1 class="hero-title">
           Servus,<br>
-          <em>magst' an guten</em><br>
+          <em>magst' an</em><br>
           <span class="accent">Tschaputschino?</span>
         </h1>
         <p class="hero-sub">
@@ -1897,6 +2024,23 @@ footer{
 </footer>
 
 <script>
+// Mobile nav burger toggle
+const burger = document.querySelector('.nav-burger');
+const mobileNav = document.getElementById('navMobile');
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('open');
+  mobileNav.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
 // Tiny interactivity for option pills + cart
 document.querySelectorAll('.option-row').forEach(row=>{
   row.querySelectorAll('.opt-pill').forEach(p=>{
