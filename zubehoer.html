@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zubehör — Tschaputschino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Coiny&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bean:#421604;--brown:#952C05;--tangelo:#F25218;--sandy:#FF9F5F;
+  --linen:#FCEEE5;--linen-deep:#F4E0CE;
+  --bg:#FFFFFF;--bg-soft:#F7F4ED;--bg-warm:#FDF2E6;--bg-pure:#FFFFFF;
+  --line:#E0DBD3;--line-soft:#E8E4DE;
+  --ink:#1F0E03;--ink-soft:#2A1808;--ink-mute:#4A3424;
+  --f-display:'Coiny',system-ui,sans-serif;
+  --f-serif:'Fraunces',Georgia,serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  --r:14px;--r-lg:24px;--r-xl:36px;
+  --pad:clamp(20px,4vw,56px);--maxw:1320px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-serif);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px var(--pad);max-width:var(--maxw);margin:0 auto;gap:24px}
+.nav-links{display:flex;gap:30px;font-family:var(--f-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+.nav-links a{position:relative;padding:6px 0;transition:color .2s}
+.nav-links a:hover,.nav-links a.current{color:var(--tangelo)}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--tangelo);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.nav-links a:hover::after,.nav-links a.current::after{transform:scaleX(1)}
+.brand{font-family:var(--f-display);font-size:28px;letter-spacing:-.01em;color:var(--bean);line-height:1;white-space:nowrap}
+.nav-utility{display:flex;gap:18px;justify-content:flex-end;align-items:center}
+.cart-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:var(--ink);color:var(--linen);border-radius:99px;font-family:var(--f-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:transform .2s,background .2s}
+.cart-btn:hover{background:var(--tangelo);transform:translateY(-1px)}
+.cart-count{background:var(--tangelo);color:var(--linen);width:18px;height:18px;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-size:10px}
+.nav-burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;padding:8px;border-radius:var(--r);flex-shrink:0;transition:background .2s}
+.nav-burger:hover{background:var(--linen-deep)}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--bean);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:99;padding:80px 24px 36px;transform:translateY(-110%);transition:transform .38s cubic-bezier(.4,0,.2,1);border-bottom:1px solid var(--line);display:none}
+.nav-mobile.open{transform:translateY(0)}
+.nav-mobile-links{display:flex;flex-direction:column}
+.nav-mobile-links a{font-family:var(--f-mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:18px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;transition:color .2s}
+.nav-mobile-links a:first-child{border-top:1px solid var(--line)}
+.nav-mobile-links a:hover,.nav-mobile-links a.current{color:var(--tangelo)}
+.nav-mobile-links a::after{content:"→";opacity:.4}
+
+/* SHOP HEADER */
+.shop-header{padding:56px 0 44px;border-bottom:1px solid var(--line)}
+.shop-eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--tangelo);margin-bottom:14px}
+.shop-title{font-family:var(--f-display);font-size:clamp(56px,8vw,96px);color:var(--bean);line-height:.9;letter-spacing:-.01em;margin-bottom:14px}
+.shop-desc{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute)}
+
+/* FILTER BAR */
+.filter-bar{position:sticky;top:63px;z-index:90;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.filter-inner{display:flex;align-items:center;gap:8px;padding:12px 0;overflow-x:auto;scrollbar-width:none}
+.filter-inner::-webkit-scrollbar{display:none}
+.filter-pill{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);color:var(--ink-mute);transition:all .2s;white-space:nowrap;flex-shrink:0}
+.filter-pill:hover{border-color:var(--bean);color:var(--bean)}
+.filter-pill.active{background:var(--bean);border-color:var(--bean);color:var(--linen)}
+.filter-count{font-family:var(--f-mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em;margin-left:auto;white-space:nowrap;flex-shrink:0;padding-left:16px;border-left:1px solid var(--line)}
+
+/* PRODUCT GRID */
+.shop-main{padding:52px 0 100px}
+.gear-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+
+/* FEATURED CARD (spans 2 cols) */
+.gear-card{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;background:var(--bg-pure)}
+.gear-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px -16px rgba(66,22,4,.13)}
+.gear-card.feat{grid-column:span 2;grid-row:span 1;display:grid;grid-template-columns:1fr 1fr}
+.gear-card-image{aspect-ratio:1;background:var(--card-bg,var(--bg-soft));display:flex;align-items:center;justify-content:center;padding:32px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.gear-card.feat .gear-card-image{aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line)}
+.gear-card-image svg{transition:transform .4s ease}
+.gear-card:hover .gear-card-image svg{transform:scale(1.06) rotate(-2deg)}
+.badge{position:absolute;top:14px;right:14px;background:var(--linen);color:var(--bean);font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:99px}
+.badge.new{background:var(--tangelo);color:var(--linen)}
+.badge.soon{background:var(--ink);color:var(--linen)}
+.gear-card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px}
+.gear-card.feat .gear-card-body{padding:28px 28px;justify-content:center;gap:10px}
+.gear-cat{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);opacity:.7}
+.gear-name{font-family:var(--f-serif);font-weight:400;font-size:18px;line-height:1.1;letter-spacing:-.01em;color:var(--bean)}
+.gear-card.feat .gear-name{font-family:var(--f-display);font-size:30px;line-height:.95}
+.gear-desc{font-size:13px;line-height:1.5;color:var(--ink-soft);font-style:italic;display:none}
+.gear-card.feat .gear-desc{display:block}
+.gear-price-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:4px}
+.gear-price{font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--bean)}
+.gear-card.feat .gear-price{font-size:18px}
+.gear-add{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);border:1px solid var(--line);border-radius:99px;padding:7px 14px;transition:all .2s;white-space:nowrap}
+.gear-card:hover .gear-add{background:var(--ink);border-color:var(--ink);color:var(--linen)}
+.gear-add:disabled{opacity:.45;cursor:default}
+.gear-card:hover .gear-add:disabled{background:transparent;border-color:var(--line);color:var(--ink-mute)}
+
+/* FOOTER */
+.sub-footer{border-top:1px solid var(--line);padding:28px 0}
+.sub-footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.sub-footer-brand{font-family:var(--f-display);font-size:22px;color:var(--bean)}
+.sub-footer-links{display:flex;gap:24px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)}
+.sub-footer-links a:hover{color:var(--tangelo)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.gear-grid{grid-template-columns:repeat(2,1fr)}.gear-card.feat{grid-column:span 2;grid-template-columns:1fr 1fr}}
+@media(max-width:680px){
+  .nav-links{display:none}.nav-burger{display:flex}.nav-mobile{display:block}
+  .nav-inner{grid-template-columns:auto 1fr auto;gap:12px}
+  .cart-btn span:not(.cart-count){display:none}.cart-btn{padding:9px 12px;gap:6px}
+  .shop-header{padding:36px 0 28px}
+  .gear-grid{grid-template-columns:1fr 1fr}
+  .gear-card.feat{grid-column:span 2;grid-template-columns:1fr;grid-template-rows:auto auto}
+  .gear-card.feat .gear-card-image{border-right:0;border-bottom:1px solid var(--line);aspect-ratio:16/9}
+  .filter-bar{top:57px}
+  .shop-main{padding:36px 0 72px}
+}
+@media(max-width:420px){.gear-grid{grid-template-columns:1fr}.gear-card.feat{grid-column:span 1}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="kaffee.html">Kaffee</a>
+      <a href="zubehoer.html" class="current">Zubehör</a>
+      <a href="tschaputschino.html#abo">Abo</a>
+      <a href="tschaputschino.html#story">Röstereien</a>
+      <a href="tschaputschino.html#brew">Brüh-Guide</a>
+    </div>
+    <a href="tschaputschino.html" class="brand">Tschaputschino</a>
+    <div class="nav-utility">
+      <button class="cart-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span>Warenkorb</span>
+        <span class="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <nav class="nav-mobile-links">
+    <a href="kaffee.html">Kaffee</a>
+    <a href="zubehoer.html" class="current">Zubehör</a>
+    <a href="tschaputschino.html#abo">Abo</a>
+    <a href="tschaputschino.html#story">Röstereien</a>
+    <a href="tschaputschino.html#brew">Brüh-Guide</a>
+  </nav>
+</div>
+
+<!-- SHOP HEADER -->
+<header class="shop-header">
+  <div class="container">
+    <div class="shop-eyebrow">/04 — Zubehör</div>
+    <h1 class="shop-title">Zubehör</h1>
+    <p class="shop-desc">Werkzeug, das die Bohnen verdient haben</p>
+  </div>
+</header>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <button class="filter-pill active" data-filter="all">Alles</button>
+      <button class="filter-pill" data-filter="maschine">Maschinen</button>
+      <button class="filter-pill" data-filter="muehle">Mühlen</button>
+      <button class="filter-pill" data-filter="filter">Filter</button>
+      <button class="filter-pill" data-filter="frenchpress">French Press</button>
+      <button class="filter-pill" data-filter="tasse">Tassen</button>
+      <button class="filter-pill" data-filter="zubehoer">Zubehör</button>
+      <span class="filter-count">8 Produkte</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<main class="shop-main">
+  <div class="container">
+    <div class="gear-grid">
+
+      <!-- FEATURED: Lelit Anna -->
+      <article class="gear-card feat" data-cat="maschine" style="--card-bg:#FDF2E6;">
+        <div class="gear-card-image" style="background:#FDF2E6;">
+          <span class="badge soon">Demnächst</span>
+          <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:80%;height:80%">
+            <rect x="40" y="56" width="130" height="108" rx="8" fill="#421604" fill-opacity=".05" stroke="#421604" stroke-width="2"/>
+            <rect x="40" y="56" width="130" height="22" rx="8" fill="#421604" fill-opacity=".08" stroke="#421604" stroke-width="0"/>
+            <rect x="40" y="56" width="130" height="22" rx="0" fill="none" stroke="#421604" stroke-width="2"/>
+            <circle cx="68" cy="90" r="10" stroke="#421604" stroke-width="2" fill="none"/>
+            <circle cx="68" cy="90" r="4" fill="#F25218"/>
+            <rect x="90" y="80" width="60" height="22" rx="3" stroke="#421604" stroke-width="2" fill="none"/>
+            <rect x="93" y="83" width="16" height="16" rx="2" fill="#421604" fill-opacity=".1"/>
+            <rect x="113" y="83" width="16" height="16" rx="2" fill="#421604" fill-opacity=".1"/>
+            <rect x="133" y="83" width="14" height="16" rx="2" fill="#421604" fill-opacity=".1"/>
+            <rect x="70" y="118" width="50" height="8" rx="2" stroke="#421604" stroke-width="1.5" fill="none"/>
+            <rect x="78" y="126" width="34" height="24" rx="2" stroke="#421604" stroke-width="1.5" fill="none"/>
+            <path d="M83 150 Q95 158 107 150" stroke="#421604" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <rect x="170" y="76" width="20" height="56" rx="10" stroke="#421604" stroke-width="2" fill="#421604" fill-opacity=".04"/>
+            <line x1="180" y1="88" x2="180" y2="120" stroke="#421604" stroke-width="1.5" stroke-dasharray="3 4"/>
+            <rect x="44" y="62" width="8" height="8" rx="2" fill="#F25218"/>
+            <rect x="56" y="62" width="8" height="8" rx="2" fill="#421604" fill-opacity=".2"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Siebträgermaschine · Highlight</div>
+          <div class="gear-name">Tschapu × Lelit Anna</div>
+          <p class="gear-desc">Unsere erste Kollaboration — kompakt, präzise, österreichisch. Für zuhause gebaut, für Profis gedacht.</p>
+          <div class="gear-price-row">
+            <span class="gear-price">€599,00</span>
+            <button class="gear-add" disabled>Bald verfügbar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- V60 -->
+      <article class="gear-card" data-cat="filter">
+        <div class="gear-card-image" style="--card-bg:#FDF2E6;background:#FDF2E6;">
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <path d="M28 18 L72 18 L66 30 L34 30 Z" stroke="#421604" stroke-width="2" fill="#FF9F5F" fill-opacity=".3" stroke-linejoin="round"/>
+            <path d="M34 30 L40 72 L60 72 L66 30" stroke="#421604" stroke-width="2" fill="#F25218" fill-opacity=".15"/>
+            <ellipse cx="50" cy="72" rx="10" ry="3" stroke="#421604" stroke-width="1.5"/>
+            <path d="M40 72 L43 82 L57 82 L60 72" stroke="#421604" stroke-width="1.5" fill="none"/>
+            <path d="M44 44 Q50 52 56 44" stroke="#421604" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Filter · Keramik</div>
+          <div class="gear-name">V60 Set Keramik</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€32,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Comandante -->
+      <article class="gear-card" data-cat="muehle">
+        <div class="gear-card-image" style="background:#F7F4ED;">
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <rect x="34" y="14" width="32" height="58" rx="6" stroke="#421604" stroke-width="2" fill="#421604" fill-opacity=".05"/>
+            <rect x="40" y="20" width="20" height="14" rx="3" stroke="#421604" stroke-width="1.5" fill="#F25218" fill-opacity=".2"/>
+            <circle cx="50" cy="27" r="5" stroke="#421604" stroke-width="1.5"/>
+            <rect x="38" y="58" width="24" height="10" rx="2" stroke="#421604" stroke-width="1.5" fill="#421604" fill-opacity=".08"/>
+            <rect x="43" y="8" width="14" height="8" rx="2" stroke="#421604" stroke-width="1.5"/>
+            <line x1="50" y1="8" x2="50" y2="4" stroke="#421604" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="50" y1="4" x2="62" y2="4" stroke="#421604" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="62" y1="4" x2="62" y2="12" stroke="#421604" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="34" y="68" width="32" height="16" rx="4" stroke="#421604" stroke-width="1.5" fill="#421604" fill-opacity=".06"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Handmühle · Präzision</div>
+          <div class="gear-name">Comandante C40</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€289,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bodum -->
+      <article class="gear-card" data-cat="frenchpress">
+        <div class="gear-card-image" style="background:#F7F4ED;">
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <rect x="28" y="18" width="44" height="62" rx="4" stroke="#421604" stroke-width="2" fill="none"/>
+            <rect x="28" y="18" width="44" height="14" rx="4" stroke="#421604" stroke-width="0" fill="#421604" fill-opacity=".06"/>
+            <line x1="28" y1="32" x2="72" y2="32" stroke="#421604" stroke-width="1.5"/>
+            <rect x="44" y="18" width="12" height="8" rx="2" fill="#421604" fill-opacity=".15"/>
+            <line x1="50" y1="26" x2="50" y2="72" stroke="#421604" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <ellipse cx="50" cy="54" rx="16" ry="3" stroke="#421604" stroke-width="1.5"/>
+            <path d="M28 76 Q20 76 20 84 Q20 92 28 92 L72 92 Q80 92 80 84 Q80 76 72 76 Z" stroke="#421604" stroke-width="1.5" fill="#421604" fill-opacity=".04"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">French Press · Klassiker</div>
+          <div class="gear-name">Bodum Chambord</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€42,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Hario Kettle -->
+      <article class="gear-card" data-cat="zubehoer">
+        <div class="gear-card-image" style="background:#FDF2E6;">
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <path d="M22 40 Q22 26 36 26 L64 26 Q78 26 78 40 L74 72 Q74 78 68 78 L32 78 Q26 78 26 72 Z" stroke="#421604" stroke-width="2" fill="#421604" fill-opacity=".05"/>
+            <path d="M64 26 Q80 26 84 34 Q88 42 80 46 L74 46" stroke="#421604" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <line x1="22" y1="40" x2="78" y2="40" stroke="#421604" stroke-width="1.5"/>
+            <path d="M44 18 Q44 12 50 12 Q56 12 56 18 L56 26 L44 26 Z" stroke="#421604" stroke-width="1.5" fill="#421604" fill-opacity=".08"/>
+            <path d="M38 58 Q42 52 50 52 Q58 52 62 58" stroke="#F25218" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Kettle · Pour-Over</div>
+          <div class="gear-name">Hario Buono</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€68,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Aeropress -->
+      <article class="gear-card" data-cat="filter zubehoer">
+        <div class="gear-card-image" style="background:#F7F4ED;">
+          <span class="badge new">Neu</span>
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <rect x="34" y="22" width="32" height="48" rx="6" stroke="#421604" stroke-width="2" fill="#421604" fill-opacity=".04"/>
+            <rect x="38" y="26" width="24" height="40" rx="4" stroke="#421604" stroke-width="1.5" fill="#F25218" fill-opacity=".08"/>
+            <rect x="40" y="56" width="20" height="14" rx="3" fill="#421604" fill-opacity=".12" stroke="#421604" stroke-width="1.5"/>
+            <rect x="36" y="68" width="28" height="6" rx="3" stroke="#421604" stroke-width="1.5" fill="none"/>
+            <line x1="50" y1="22" x2="50" y2="16" stroke="#421604" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="50" cy="14" r="3" fill="#F25218"/>
+            <path d="M34 74 Q50 82 66 74" stroke="#421604" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Aeropress · Reise</div>
+          <div class="gear-name">Aeropress Go</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€38,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Acaia Scale -->
+      <article class="gear-card" data-cat="zubehoer">
+        <div class="gear-card-image" style="background:#F7F4ED;">
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <rect x="18" y="50" width="64" height="34" rx="6" stroke="#421604" stroke-width="2" fill="#421604" fill-opacity=".04"/>
+            <rect x="24" y="56" width="40" height="22" rx="3" stroke="#421604" stroke-width="1.5" fill="none"/>
+            <line x1="28" y1="64" x2="60" y2="64" stroke="#421604" stroke-width="1" opacity=".3"/>
+            <text x="33" y="74" font-family="monospace" font-size="8" fill="#421604" opacity=".6">18.4 g</text>
+            <circle cx="68" cy="67" r="4" stroke="#F25218" stroke-width="1.5" fill="#F25218" fill-opacity=".2"/>
+            <path d="M28 50 Q28 26 50 22 Q72 26 72 50" stroke="#421604" stroke-width="1.5" fill="none"/>
+            <circle cx="50" cy="36" r="8" stroke="#421604" stroke-width="1.5" fill="#421604" fill-opacity=".06"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Waage · Präzision</div>
+          <div class="gear-name">Acaia Pearl</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€185,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cup Set -->
+      <article class="gear-card" data-cat="tasse">
+        <div class="gear-card-image" style="background:#FDF2E6;">
+          <svg viewBox="0 0 100 100" fill="none" style="width:70%;height:70%">
+            <ellipse cx="50" cy="44" rx="20" ry="6" stroke="#421604" stroke-width="2" fill="#421604" fill-opacity=".06"/>
+            <path d="M30 44 L34 76 L66 76 L70 44" stroke="#421604" stroke-width="2" fill="#FF9F5F" fill-opacity=".15"/>
+            <path d="M70 52 Q80 52 80 60 Q80 68 70 68" stroke="#421604" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="50" cy="76" rx="16" ry="4" stroke="#421604" stroke-width="1.5" fill="#421604" fill-opacity=".06"/>
+            <path d="M42 26 Q42 20 50 20 Q58 20 58 26" stroke="#F25218" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M46 22 Q46 18 50 16" stroke="#F25218" stroke-width="1" stroke-linecap="round" fill="none" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="gear-card-body">
+          <div class="gear-cat">Tassen · 4er-Set</div>
+          <div class="gear-name">Cappu-Set 4er</div>
+          <div class="gear-price-row">
+            <span class="gear-price">€48,00</span>
+            <button class="gear-add">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<footer class="sub-footer">
+  <div class="container">
+    <div class="sub-footer-inner">
+      <a href="tschaputschino.html" class="sub-footer-brand">Tschaputschino</a>
+      <div class="sub-footer-links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const burger=document.querySelector('.nav-burger');
+const mobileNav=document.getElementById('navMobile');
+if(burger&&mobileNav){
+  burger.addEventListener('click',()=>{
+    const open=burger.classList.toggle('open');
+    mobileNav.classList.toggle('open',open);
+    document.body.style.overflow=open?'hidden':'';
+    burger.setAttribute('aria-label',open?'Menü schließen':'Menü öffnen');
+  });
+  mobileNav.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open');document.body.style.overflow='';});
+  });
+}
+document.querySelectorAll('.gear-add:not(:disabled)').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.preventDefault();e.stopPropagation();
+    const cart=document.querySelector('.cart-count');
+    cart.textContent=parseInt(cart.textContent||'0')+1;
+    const orig=btn.textContent;
+    btn.textContent='Hinzugefügt ✓';btn.style.background='var(--tangelo)';btn.style.borderColor='var(--tangelo)';btn.style.color='var(--linen)';
+    setTimeout(()=>{btn.textContent=orig;btn.style.background='';btn.style.borderColor='';btn.style.color='';},1400);
+  });
+});
+document.querySelectorAll('.filter-pill').forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    const cat=pill.dataset.filter;
+    let vis=0;
+    document.querySelectorAll('[data-cat]').forEach(card=>{
+      const show=cat==='all'||card.dataset.cat.split(' ').includes(cat);
+      card.style.display=show?'':'none';
+      if(show)vis++;
+    });
+    const counter=document.querySelector('.filter-count');
+    if(counter)counter.textContent=vis+' Produkte';
+  });
+});
+</script>
+</body>
+</html>
